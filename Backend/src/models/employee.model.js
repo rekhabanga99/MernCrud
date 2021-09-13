@@ -11,6 +11,7 @@ function model(sequelize) {
         email : { type: DataTypes.STRING, allowNull: false,defaultValue:1 }, //it will be new
         phone: { type: DataTypes.STRING, allowNull: false, unique:true, validate:{len:[10]}},
         salary :{ type: DataTypes.STRING, allowNull: false },
+        
      
     };
 

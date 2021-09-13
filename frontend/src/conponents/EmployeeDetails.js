@@ -34,6 +34,7 @@ function EmployeeDetail()
           });
     }
     useEffect(() => {
+      alert("called")
       loadEmployeeDetail();
     }, []);
  
@@ -58,15 +59,10 @@ function EmployeeDetail()
     }
      
     // Delete Employee Record
-    const deleteRecord = (productId) =>
+    const deleteRecord =async (productId) =>
     {
-      axios.delete(`http://localhost:5000/api/v1/employee/${productId}`)
-      .then((result)=>{
-        loadEmployeeDetail();
-      })
-      .catch(()=>{
-        alert('Error in the Code');
-      });
+      await axios.delete(`http://localhost:5000/api/v1/employee/${productId}`)
+      loadEmployeeDetail();
     };
  
   return(
@@ -154,7 +150,7 @@ function EmployeeDetail()
                 <td>{name.phone}</td>
                 <td>{name.salary}</td>
                 <td>
-                      <a  className="text-danger mr-2"
+                      <a  className="text-danger mr-2" style={{backgroundColor:'red'}}
                         onClick={() => {
                           const confirmBox = window.confirm(
                             "Do you really want to delete "+ name.first_name

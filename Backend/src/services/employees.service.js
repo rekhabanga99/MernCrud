@@ -2,7 +2,8 @@ var db  = require('../../config/db.config');
  
 module.exports = {
    createEmployee,
-   getAllEmployees
+   getAllEmployees,
+   deleteEmployee
   //addData
 
 };
@@ -41,6 +42,12 @@ async function createEmployee(Employee, result) {
 async function getAllEmployees() {
     const employee = await db.Employee.findAll({})
     return employee;
+}
+async function deleteEmployee(employeeId) {
+    console.log("emplu------------",employeeId)
+    return await db.Employee.destroy( {
+        where: { id: employeeId }
+    })
 }
 
 // // get employee by Name for Search Data by name 

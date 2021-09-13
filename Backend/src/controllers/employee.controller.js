@@ -4,6 +4,8 @@ const employeeService = require('../services/employees.service');
 
 router.post('/', createEmployee)
 router.get('/', getAllEmployees)
+// delete employee
+router.delete('/:id',deleteEmployee);
 // // get all employees
 
  
@@ -101,10 +103,12 @@ exports.updateEmployee = (req, res)=>{
 }
  
 // delete employee
-exports.deleteEmployee = (req, res)=>{
-    employeeService.deleteEmployee(req.params.id, (err, employee)=>{
-        if(err)
-        res.send(err);
-        res.json({success:true, message: 'Employee deleted successully!'});
-    })
+async function deleteEmployee (req, res,err){
+  const resJson =  employeeService.deleteEmployee(req.params.id)
+  if(err){
+    res.json({success: false, message: 'error in deletion',data:{}})
+} else{
+    res.json({success:true, message: 'Employee deleted successully!',data:resJson});
+}
+       
 }
