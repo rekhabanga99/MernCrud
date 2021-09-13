@@ -42,7 +42,7 @@ function EmployeeDetail()
         e.preventDefault();
         e.target.reset();
         await axios.post("http://localhost:5000/api/v1/employee",user);
-        alert('Data Inserted');
+       // alert('Data Inserted');
          
         loadEmployeeDetail();
     };
